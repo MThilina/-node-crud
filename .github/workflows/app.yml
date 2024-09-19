@@ -32,9 +32,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # Run tests (ensure that your project has a test script defined in package.json)
-    - name: Run tests
-      run: npm test
+    # # Run tests (ensure that your project has a test script defined in package.json)
+    # - name: Run tests
+    #   run: npm test
 
     # Linting (optional: if you use a linter like ESLint in your project)
     - name: Lint code

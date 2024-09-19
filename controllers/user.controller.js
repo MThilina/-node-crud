@@ -3,7 +3,7 @@ const user_model = require('../models/user.model')
 const createUser = async (req,res)=>{
     try{
         const product = await user_model.create(req.body);
-        return res.status(201).json(product);
+        return res.status(201).json({message:"User Created",data:product});
     }catch(error){
         console.log(`Error occured: ${error.message}`);
         return res.status(500).json({message:"Error occured",data:error.message});
