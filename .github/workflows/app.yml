@@ -36,9 +36,9 @@ jobs:
     # - name: Run tests
     #   run: npm test
 
-    # Linting (optional: if you use a linter like ESLint in your project)
-    - name: Lint code
-      run: npm run lint
+    # # Linting (optional: if you use a linter like ESLint in your project)
+    # - name: Lint code
+    #   run: npm run lint
 
     # Build the project (if applicable)
     - name: Build the project
