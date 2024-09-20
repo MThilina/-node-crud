@@ -1,22 +1,30 @@
 const  express = require('express')
-const mongoose = require('mongoose')
 const user_route = require('./routers/user.router')
+const connectDB = require('./db/connection.db')
+require('dotenv').config()
 
-const app = express()
 const port = 5000
 
 // middleware initialization 
 app.use(express.json())
+// routers 
 app.use('/api/users',user_route)
 
 
-// password has to be URL encoded if there are especial characters 
-mongoose.connect("mongodb+srv://thilinamanawadu:Tsl%4020638@backend.6ro5b.mongodb.net/Node-Crud?retryWrites=true&w=majority&appName=Backend")
-.then(()=>{
-console.log("Database has been connected.");
-})
-.catch((e)=>{
-    console.log("Database connection failed"+e.message);
-})
+const initializeDB = async (url)=>{
+    try{
+        await connectDB(url)
+        .then(()=>{
+            console.log('Database has been connected.')
+            app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+        })
+        .catch((error)=>{
+            console.log(`Database connection failed: ${error.message}`)
+        })
+    }catch(error){
+        console.log(`Error occured : ${error.message}`);
+    }
+}
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// connecting through function 
+initializeDB(process.env.MONGO_URI); // taking details from the env use the key to retrieve value 
