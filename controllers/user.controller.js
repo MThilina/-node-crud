@@ -24,7 +24,7 @@ const getAllUsers = async (req,res)=>{
 const getUserById = async (req,res)=>{
     const {id} = req.params;
     try{
-        const users = await user_model.findOne({id:id})  // find one using mapping the coloums and req params
+        const users = await user_model.findById(id)  // find one using mapping the coloums and req params
         res.status(200).json({message:"User Found",data:users})
     }catch(error){
         console.log(`Error occured: ${error.message}`);
@@ -55,12 +55,13 @@ const updateUser = async (req,res)=>{
 const deleteUser = async (req,res)=>{
     const {id} = req.params;
     try{
+        
         const users = await user_model.findByIdAndDelete(id); // hold the deleted user 
-       
-         // if the record is there , then the record will be deleted
-        if(!users){
-           return res.status(404).json({message:"Users Not Found",data:null});
-        }
+
+          // if the record is there , then the record will be deleted
+          if(!users){
+            return res.status(404).json({message:"Users Not Found",data:null});
+         }
 
        return res.status(200).json({message:"Users Found",data:users});
     }catch(error){

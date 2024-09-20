@@ -23,7 +23,8 @@ const userSchema = mongoose.Schema({
             required:false,
             default:'NPM-00000'
         }
-})
+},
+{timestamp:true})
    
 
 const User = mongoose.model("User",userSchema); 
