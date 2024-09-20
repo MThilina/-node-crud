@@ -7,7 +7,7 @@ const port = 5000
 
 // middleware initialization 
 app.use(express.json())
-app.use('/',user_route)
+app.use('/api/users',user_route)
 
 
 // password has to be URL encoded if there are especial characters 
