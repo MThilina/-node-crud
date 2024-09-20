@@ -35,16 +35,13 @@ const getUserById = async (req,res)=>{
 const updateUser = async (req,res)=>{
     const {id} = req.params;
     try{
-        const users = await user_model.findByIdAndUpdate(id,req.body);
-       
+        // update the database and retrieve the new record with validators 
+        const users = await user_model.findOneAndUpdate({_id:id},req.body,{new:true,validator:true});
         if(!users){
            return res.status(404).json({message:"Users Not Found",data:null});
         }
 
-        // check updated user and return
-        const updatedUsers = await user_model.findById(id);
-
-       return res.status(200).json({message:"Users Found",data:updatedUsers});
+       return res.status(200).json({message:"Users Found",data:users});
     }catch(error){
         console.log(`Error occured: ${error.message}`);
         return res.status(500).json({message:"Error occured",data:error.message});

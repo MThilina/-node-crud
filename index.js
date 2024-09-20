@@ -4,6 +4,7 @@ const connectDB = require('./db/connection.db')
 require('dotenv').config()
 
 const port = 5000
+const app = express()
 
 // middleware initialization 
 app.use(express.json())
