@@ -1,8 +1,10 @@
 const  express = require('express')
 const user_route = require('./routers/user.router')
 const connectDB = require('./db/connection.db')
-require('dotenv').config()
 const notFount = require('./middleware/not_found.middleware')
+const errorHandelMiddleware = require('./middleware/error_handel.middleware')
+
+require('dotenv').config()
 
 const port = 5000
 const app = express()
@@ -12,6 +14,9 @@ app.use(express.json())
 // routers 
 app.use('/api/users',user_route)
 app.use(notFount) // this is set for the URI which are not found 
+
+
+app.use(errorHandelMiddleware) // seperate middleware for errorhandel
 
 
 const initializeDB = async (url)=>{
