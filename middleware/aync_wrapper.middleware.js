@@ -3,8 +3,7 @@ const ayncWrapper = (fn)=>{
         try{
             await fn(req,res,next)
         }catch(error){
-            res.status(500).json({message:'Error Occured ',data:`${error.message}`});
-            next(error.message)
+            next(error) // sending error object to next calling func
         }
     }
 }
